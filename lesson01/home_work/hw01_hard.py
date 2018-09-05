@@ -14,3 +14,14 @@ __author__ = 'Ваши Ф.И.О.'
 # если точно известно, что её значение не изменялось?
 
 # Подсказка: это значение точно есть ;)
+
+import math
+
+a = float(math.inf)
+
+if (a == a * 2
+        and a == a ** 2
+        and a > 999999):
+    print('aye')
+else:
+    print('fail fish')
