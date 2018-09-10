@@ -1,3 +1,6 @@
+
+__author__ = 'Дерюгин А.В.'
+
 # Задание-1: уравнение прямой вида y = kx + b задано в виде строки.
 # Определить координату y точки с заданной координатой x.
 
@@ -5,6 +8,26 @@ equation = 'y = -12x + 11111140.2121'
 x = 2.5
 # вычислите и выведите y
 
+
+pos_x = equation.find('x')
+print(pos_x)
+pos_k = equation.find('=') + 1
+print(pos_k)
+
+if (equation[pos_k]) == '-':
+    sign1 = -1
+else:
+    sign1 = 1
+
+coefficient_k = float(equation[pos_k:pos_x]) * sign1
+print(coefficient_k)
+
+
+b = float(equation[pos_x + 4:])
+
+y = coefficient_k * x + b
+
+print(y)
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
 # Проверить, корректно ли введена дата.
@@ -17,13 +40,38 @@ x = 2.5
 #  (т.е. 2 символа для дня, 2 - для месяца, 4 - для года)
 
 # Пример корректной даты
-date = '01.11.1985'
+#date = '01.11.1985'
 
 # Примеры некорректных дат
-date = '01.22.1001'
-date = '1.12.1001'
-date = '-2.10.3001'
+#date = '01.22.1001'
+#date = '1.12.1001'
+#date = '-2.10.3001'
 
+date = input("Введите день в формате dd.mm.yyyy, например: 02.11.2013:")
+
+if not len(date) == 10:
+    print('Дата введенане верно')
+elif not date[:2].isnumeric() or not date[3:5].isnumeric() or not date[6:].isnumeric():
+    print('Используй формат даты')
+else:
+    day = int(date[:2])
+    month = int(date[3:5])
+    year = int(date[6:])
+
+    if not date[2] or not date[5] == '.':
+        print('Разделители должны быть точками')
+    elif day < 1 or month < 1:
+        print('Мы не сможем вернуться в прошлое, как бы нам ни хотелось')
+    elif month in [1, 3, 5, 7, 8, 10, 12] and day > 31:
+        print('В этом месяце не может быть больше 31-го дня')
+    elif month in [2, 4, 6, 9, 11] and day > 30:
+        print('В этом месяце не может быть больше 30-ти дней')
+    elif month > 12:
+        print('В году не бывает больше 12-ти месяцев')
+    elif year < 1:
+        print('Год слишком мал')
+    else:
+        print('Дата - {} принята в работу'.format(date))
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
 #
