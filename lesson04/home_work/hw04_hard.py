@@ -13,6 +13,13 @@ matrix = [[1, 0, 8],
 
 # Суть сложности hard: Решите задачу в одну строку
 
+# кортеж
+print(list(zip(*matrix)))
+
+# лист
+print(list(map(list, zip(*matrix))))
+
+
 # Задание-2:
 # Найдите наибольшее произведение пяти последовательных цифр в 1000-значном числе.
 # Выведите произведение и индекс смещения первого числа последовательных 5-ти цифр.
@@ -39,6 +46,22 @@ number = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
+import re
+
+def list_of_five_numbers(string):
+    patern = '(?=([0-9]{5}))'
+    result = re.findall(patern, string)
+    return result
+
+def product(string):
+    result = 1
+    for i in range(len(string)):
+        result *= int(string[i])
+    return result
+product_list = [product(i) for i in list_of_five_numbers(number)]
+max_product = max(product_list)
+
+print('Произведение %s и индекс %s' % (str(max_product), str(product_list.index(max_product))))
 
 # Задание-3 (Ферзи):
 # Известно, что на доске 8×8 можно расставить 8 ферзей так, чтобы они не били
