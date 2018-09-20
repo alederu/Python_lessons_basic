@@ -13,3 +13,39 @@
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
+
+import shutil
+import sys
+import os
+import hw05_easy
+
+def get_dir_name():
+    return os.path.join(os.getcwd(), input('Введите имя папки: '))
+
+while True:
+    print()
+ 
+    print('Текущая директория - {}'.format(os.getcwd()))
+    try:
+        choice = int(input('Выберите пункт:\n'
+                           '1. Перейти в папку\n'
+                           '2. Просмотреть содержимое текущей папки\n'
+                           '3. Удалить папку\n'
+                           '4. Создать папку\n'                      
+                           '5. Выход\n'
+                           '---------------------\n'
+                           'Ваш выбор: '))
+    except ValueError:
+        print('Неверный ввод!')
+        continue
+ 
+    if choice == 1:
+        hw05_easy.change_dir(get_dir_name())
+    if choice == 2:
+        hw05_easy.local_dir()
+    if choice == 3:
+        hw05_easy.remove_dir(get_dir_name())
+    if choice == 4:
+        hw05_easy.create_dir(get_dir_name())
+    if choice == 5:
+        break
